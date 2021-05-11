@@ -11,23 +11,63 @@
 
 <body>
   <div id="app">
-    <button @click="changeLink">Click to Change Link</button>
-    <a :href="link">Link</a>
+    <ul>
+      <li v-for="(ingredient, index) in ingredients" :key="ingredient">{{index+1}} {{ingredient}}</li>
+    </ul>
+    <button @click="ingredients.push('spices')">Add New</button>
+    <hr>
+    <ol>
+      <li v-for="person in persons">
+        <div v-for="(v, k, idx) in person">{{k}}: {{v}} ({{idx}})</div>
+      </li>
+    </ol>
+    <span v-for="n in 10">{{n}}</span>
+    <hr>
+    <template v-for="(ingredient, index) in ingredients">
+      <h1>{{ ingredient }}</h1>
+      <p>{{ index }}</p>
+    </template>
+    <div v-for="person in persons">{{person.name}}</div>
   </div>
 
   <script>
     new Vue({
       el: "#app",
       data: {
-        link: 'http://google.com'
+        ingredients: ['meat', 'fruit', 'cookies'],
+        persons: [
+          { name: 'Max', age: 27, color: 'red' },
+          { name: "Anna", age: 'unknown', color: 'blue' },
+        ]
+      },
+      computed: {
       },
       methods: {
-        changeLink: function () {
-          this.link = "http://apple.com"
-        }
       }
     })
   </script>
+
+  <style>
+    .demo {
+      width: 100px;
+      height: 100px;
+      background-color: grey;
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .red {
+      background-color: red;
+    }
+  </style>
 </body>
 
 </html>
